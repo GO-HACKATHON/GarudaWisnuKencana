@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gwk.movesenseexample.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Activity" />
+
+        <Button
+            android:id="@+id/activity_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get My Activity" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="location lat lng" />
+
+        <Button
+            android:id="@+id/location_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Location" />
+
+        <TextView
+            android:id="@+id/places"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="places" />
+
+        <Button
+            android:id="@+id/places_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Places" />
+
+        <TextView
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="places" />
+
+        <Button
+            android:id="@+id/weather_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Weather" />
+
+        <Button
+            android:id="@+id/fences_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Open fences example" />
+
+    </LinearLayout>
+
+</ScrollView>
