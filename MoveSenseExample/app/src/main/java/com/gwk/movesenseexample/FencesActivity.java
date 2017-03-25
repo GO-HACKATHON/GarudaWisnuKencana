@@ -8,25 +8,33 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.awareness.fence.DetectedActivityFence;
+import com.google.android.gms.awareness.fence.FenceQueryResult;
 import com.google.android.gms.awareness.fence.FenceState;
+import com.google.android.gms.awareness.fence.FenceStateMap;
 import com.google.android.gms.awareness.fence.TimeFence;
 import com.google.android.gms.awareness.state.HeadphoneState;
 import com.gwk.movesense.MoveSenseFences;
 import com.gwk.movesense.helper.MoveSenseHelper;
 import com.gwk.movesense.receiver.MoveSenseReceiver;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.provider.Settings.System.DATE_FORMAT;
 
 /**
  * Created by Michinggun on 3/25/2017.
  */
 
-public class FencesActivity extends AppCompatActivity implements MoveSenseReceiver.OnFenceDetectedListener {
+public class FencesActivity extends AppCompatActivity implements MoveSenseReceiver.OnFenceDetectedListener, MoveSenseFences.OnQueryListener {
     private static final String TAG = "FencesActivity";
 
     public static final String MOVE_FENCE = "moveFence";
@@ -108,7 +116,7 @@ public class FencesActivity extends AppCompatActivity implements MoveSenseReceiv
 
     @OnClick(R.id.fencing_button)
     void onGetCurrentStateClick() {
-
+        mMoveSenseFences.queryFence(this, MOVE_FENCE, HEADPHONE_FENCE, NIGHT_FENCE);
     }
 
     @Override
@@ -139,5 +147,39 @@ public class FencesActivity extends AppCompatActivity implements MoveSenseReceiv
                 tvTime.setText("Not Detected");
                 break;
         }
+    }
+
+    @Override
+    public void onQueryReceived(FenceQueryResult fenceQueryResult) {
+        FenceStateMap map = fenceQueryResult.getFenceStateMap();
+        for (String fenceKey : map.getFenceKeys()) {
+            FenceState fenceState = map.getFenceState(fenceKey);
+            switch (fenceKey) {
+                case MOVE_FENCE:
+                    tvMove.setText(fenceState.getPreviousState() + ":" + fenceState.getCurrentState() + "\n" + DATE_FORMAT.format(
+                            String.valueOf(new Date(fenceState.getLastFenceUpdateTimeMillis()))));
+                    break;
+                case HEADPHONE_FENCE:
+                    tvHeadphone.setText(fenceState.getPreviousState() + ":" + fenceState.getCurrentState() + "\n" + DATE_FORMAT.format(
+                            String.valueOf(new Date(fenceState.getLastFenceUpdateTimeMillis()))));
+                    break;
+                case NIGHT_FENCE:
+                    tvTime.setText(fenceState.getPreviousState() + ":" + fenceState.getCurrentState() + "\n" + DATE_FORMAT.format(
+                            String.valueOf(new Date(fenceState.getLastFenceUpdateTimeMillis()))));
+                    break;
+            }
+            Log.i(TAG, "Fence " + fenceKey + ": "
+                    + fenceState.getCurrentState()
+                    + ", was="
+                    + fenceState.getPreviousState()
+                    + ", lastUpdateTime="
+                    + DATE_FORMAT.format(
+                    String.valueOf(new Date(fenceState.getLastFenceUpdateTimeMillis()))));
+        }
+    }
+
+    @Override
+    public void onQueryNotReceived() {
+        Toast.makeText(this, "Query Failed", Toast.LENGTH_SHORT).show();
     }
 }

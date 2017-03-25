@@ -10,6 +10,8 @@ import android.util.Log;
 import com.google.android.gms.awareness.Awareness;
 import com.google.android.gms.awareness.fence.AwarenessFence;
 import com.google.android.gms.awareness.fence.DetectedActivityFence;
+import com.google.android.gms.awareness.fence.FenceQueryRequest;
+import com.google.android.gms.awareness.fence.FenceQueryResult;
 import com.google.android.gms.awareness.fence.FenceUpdateRequest;
 import com.google.android.gms.awareness.fence.HeadphoneFence;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -19,6 +21,7 @@ import com.google.android.gms.common.api.Status;
 import com.gwk.movesense.receiver.MoveSenseReceiver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,14 +29,12 @@ import java.util.List;
  */
 
 public class MoveSenseFences {
-    private static final long nowMillis = System.currentTimeMillis();
-    private static final long oneHourMillis = 1L * 60L * 60L * 1000L;
     private final Activity mContext;
     private final GoogleApiClient mClient;
     private List<Pair<String, AwarenessFence>> mFences;
     // Declare variables for pending intent and fence receiver.
     private PendingIntent mPendingIntent;
-    private MoveSenseReceiver mMoveSenseReceiver;
+    private OnQueryListener queryListener;
 
     public MoveSenseFences(@NonNull Activity activity) {
         mFences = new ArrayList<>();
@@ -107,5 +108,34 @@ public class MoveSenseFences {
         });
     }
 
+    public void queryFence(OnQueryListener listener, final String... fenceKeys) {
+        if (queryListener == null) {
+            queryListener = listener;
+        }
+        Awareness.FenceApi.queryFences(mClient,
+                FenceQueryRequest.forFences(Arrays.asList(fenceKeys)))
+                .setResultCallback(new ResultCallback<FenceQueryResult>() {
+                    @Override
+                    public void onResult(@NonNull FenceQueryResult fenceQueryResult) {
+                        if (!fenceQueryResult.getStatus().isSuccess()) {
+                            if (queryListener != null) {
+                                queryListener.onQueryNotReceived();
+                            }
+                            for (String fenceKey : fenceKeys) {
+                                Log.e(getClass().getName(), "Could not query fence: " + fenceKey);
+                            }
+                            return;
+                        }
+                        if (queryListener != null) {
+                            queryListener.onQueryReceived(fenceQueryResult);
+                        }
+                    }
+                });
+    }
+
+    public interface OnQueryListener {
+        void onQueryReceived(FenceQueryResult fenceQueryResult);
+        void onQueryNotReceived();
+    }
 
 }
