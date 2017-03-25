@@ -15,7 +15,7 @@ import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.location.places.PlaceLikelihood;
 import com.gwk.movesense.MoveSenseSnapshot;
-import com.gwk.movesense.helper.MoveSenseSnapshotHelper;
+import com.gwk.movesense.helper.MoveSenseHelper;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onActivityDetected(ActivityRecognitionResult result) {
                 DetectedActivity probableActivity = result.getMostProbableActivity();
-                tvActivity.setText(MoveSenseSnapshotHelper.getActivityType(probableActivity.getType()) + ": " + probableActivity.getConfidence());
+                tvActivity.setText(MoveSenseHelper.getActivityType(probableActivity.getType()) + ": " + probableActivity.getConfidence());
                 Log.i(TAG, probableActivity.toString());
             }
         });
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "Weather: " + weather);
                 tvWeather.setText("Weather: " + weather.getTemperature(Weather.CELSIUS) + "'C\n"
                         + "Temperature feels like: " + weather.getFeelsLikeTemperature(Weather.CELSIUS) + "'C\n"
-                        + "Weather conditions: " + MoveSenseSnapshotHelper.getWeatherConditions(weather.getConditions())
+                        + "Weather conditions: " + MoveSenseHelper.getWeatherConditions(weather.getConditions())
                 );
             }
         });

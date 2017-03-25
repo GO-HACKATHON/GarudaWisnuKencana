@@ -28,7 +28,6 @@ import java.util.List;
 public class MoveSenseFences {
     private static final long nowMillis = System.currentTimeMillis();
     private static final long oneHourMillis = 1L * 60L * 60L * 1000L;
-    private static final String FENCE_RECEIVER_ACTION = "move_sense_receiver";
     private final Activity mContext;
     private final GoogleApiClient mClient;
     private List<Pair<String, AwarenessFence>> mFences;
@@ -37,33 +36,30 @@ public class MoveSenseFences {
     private MoveSenseReceiver mMoveSenseReceiver;
 
     public MoveSenseFences(@NonNull Activity activity) {
+        mFences = new ArrayList<>();
         mContext = activity;
         mClient = new GoogleApiClient.Builder(mContext)
                 .addApi(Awareness.API)
                 .build();
         mClient.connect();
-        mFences = new ArrayList<>();
 
-        Intent intent = new Intent(FENCE_RECEIVER_ACTION);
+        Intent intent = new Intent(MoveSenseReceiver.FENCE_RECEIVER_ACTION);
         mPendingIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);
-//        mMoveSenseReceiver = new MoveSenseReceiver();
-//        mMoveSenseReceiver.setFenceListener(listener);
-//        registerReceiver(myFenceReceiver, new IntentFilter(FENCE_RECEIVER_ACTION));
     }
 
-    private void addDetectActivityFence(String key, int fence) {
+    public void addDetectActivityFence(String key, int fence) {
         mFences.add(new Pair<String, AwarenessFence>(key, DetectedActivityFence.during(fence)));
     }
 
-    private void addHeadphoneFence(String key, int fence) {
+    public void addHeadphoneFence(String key, int fence) {
         mFences.add(new Pair<String, AwarenessFence>(key, HeadphoneFence.during(fence)));
     }
 
-    private void addAnyFence(String key, AwarenessFence fence) {
+    public void addAnyFence(String key, AwarenessFence fence) {
         mFences.add(new Pair<String, AwarenessFence>(key, fence));
     }
 
-    private void registerFences() {
+    public void registerFences() {
         FenceUpdateRequest.Builder builder = new FenceUpdateRequest.Builder();
         for (Pair<String, AwarenessFence> fence : mFences) {
             builder.addFence(fence.first, fence.second, mPendingIntent);
@@ -87,7 +83,7 @@ public class MoveSenseFences {
      * Call when onDestroy
      * @param fenceKeys
      */
-    private void unregisterFences(final String... fenceKeys) {
+    public void unregisterFences(final String... fenceKeys) {
         FenceUpdateRequest.Builder builder = new FenceUpdateRequest.Builder();
         for (String fenceKey : fenceKeys) {
             builder.removeFence(fenceKey);

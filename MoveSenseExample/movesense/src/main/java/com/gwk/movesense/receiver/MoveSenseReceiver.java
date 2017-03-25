@@ -11,7 +11,7 @@ import com.google.android.gms.awareness.fence.FenceState;
  */
 
 public class MoveSenseReceiver extends BroadcastReceiver {
-
+    public static final String FENCE_RECEIVER_ACTION = "move_sense_receiver";
     private OnFenceDetectedListener listener;
 
     public void setFenceListener(OnFenceDetectedListener listener) {

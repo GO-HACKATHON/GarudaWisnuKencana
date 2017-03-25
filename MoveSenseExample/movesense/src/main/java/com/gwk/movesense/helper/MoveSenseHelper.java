@@ -1,5 +1,11 @@
 package com.gwk.movesense.helper;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+
 import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.location.DetectedActivity;
 
@@ -7,7 +13,8 @@ import com.google.android.gms.location.DetectedActivity;
  * Created by Michinggun on 3/25/2017.
  */
 
-public class MoveSenseSnapshotHelper {
+public class MoveSenseHelper {
+    private static final int MY_PERMISSION = 1033;
 
     public static String getWeatherConditions(int[] conditions) {
         String weatherState = "";
@@ -68,6 +75,19 @@ public class MoveSenseSnapshotHelper {
                 return "Walking";
         }
         return "Unknowns";
+    }
+
+    public static boolean checkPermission(Context context, String permission) {
+        if (ContextCompat.checkSelfPermission(context, permission) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    (Activity) context,
+                    new String[]{permission},
+                    MY_PERMISSION
+            );
+            return false;
+        }
+        return true;
     }
 
 }

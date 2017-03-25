@@ -3,10 +3,7 @@ package com.gwk.movesense;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 
 import com.google.android.gms.awareness.Awareness;
 import com.google.android.gms.awareness.snapshot.DetectedActivityResult;
@@ -16,13 +13,14 @@ import com.google.android.gms.awareness.snapshot.WeatherResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.ActivityRecognitionResult;
+import com.gwk.movesense.helper.MoveSenseHelper;
 
 /**
  * Created by Michinggun on 3/25/2017.
  */
 
 public class MoveSenseSnapshot {
-    private static final int MY_PERMISSION = 1033;
+
     private final Context mContext;
     private GoogleApiClient mClient;
 
@@ -38,18 +36,6 @@ public class MoveSenseSnapshot {
                 .addApi(Awareness.API)
                 .build();
         mClient.connect();
-    }
-
-    private void checkPermission(String permission) {
-        if (ContextCompat.checkSelfPermission(mContext, permission) !=
-                PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    (Activity) mContext,
-                    new String[]{permission},
-                    MY_PERMISSION
-            );
-            return;
-        }
     }
 
     public void getDetectedActivity(OnActivityDetectedListener listener) {
@@ -74,7 +60,7 @@ public class MoveSenseSnapshot {
         if (locationListener == null) {
             locationListener = listener;
         }
-        checkPermission(Manifest.permission.ACCESS_FINE_LOCATION);
+        if (!MoveSenseHelper.checkPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)) return;
         Awareness.SnapshotApi.getLocation(mClient).setResultCallback(new ResultCallback<LocationResult>() {
             @Override
             public void onResult(@NonNull LocationResult locationResult) {
@@ -93,7 +79,7 @@ public class MoveSenseSnapshot {
         if (nearbyPlacesListener == null) {
             nearbyPlacesListener = listener;
         }
-        checkPermission(Manifest.permission.ACCESS_FINE_LOCATION);
+        if (!MoveSenseHelper.checkPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)) return;
         Awareness.SnapshotApi.getPlaces(mClient).setResultCallback(new ResultCallback<PlacesResult>() {
             @Override
             public void onResult(@NonNull PlacesResult placesResult) {
@@ -112,7 +98,7 @@ public class MoveSenseSnapshot {
         if (weatherListener == null) {
             weatherListener = listener;
         }
-        checkPermission(Manifest.permission.ACCESS_FINE_LOCATION);
+        if (!MoveSenseHelper.checkPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)) return;
         Awareness.SnapshotApi.getWeather(mClient)
                 .setResultCallback(new ResultCallback<WeatherResult>() {
                     @Override
