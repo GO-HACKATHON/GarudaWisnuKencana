@@ -13,9 +13,9 @@ We create personal assistance in Mobile App that can serve you when you're in ne
 
 ## Team
 
-[![Michael Ingga](https://avatars1.githubusercontent.com/u/5793036?v=3&s=140)](https://github.com/Michinggun) | [![Bara Timur](https://avatars3.githubusercontent.com/u/3598958?v=3&s=140)](https://github.com/zavyra) | [![Anselmus KA Kurniawan](https://avatars0.githubusercontent.com/u/816817?v=3&s=140)](https://github.com/archansel)
+[![Michael Ingga](https://avatars1.githubusercontent.com/u/5793036?v=3&s=140)](https://github.com/Michinggun) | [![Bara Timur](https://avatars3.githubusercontent.com/u/3598958?v=3&s=140)](https://github.com/zavyra) | [![Anselmus KAK](https://avatars0.githubusercontent.com/u/816817?v=3&s=140)](https://github.com/archansel)
 ---|---|---
-[Michael Ingga](https://github.com/Michinggun) | [Bara Timur](https://github.com/zavyra) | [Anselmus KA Kurniawan](https://github.com/archansel)
+[Michael Ingga](https://github.com/Michinggun) | [Bara Timur](https://github.com/zavyra) | [Anselmus KAK](https://github.com/archansel)
 
 ## License
 
