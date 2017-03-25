@@ -1,3 +1,6 @@
 [submodule "PikoDove"]
 	path = PikoDove
 	url = ../../zavyra/PikoDove.git
+[submodule "TimeSense"]
+	path = TimeSense
+	url = https://github.com/archansel/TimeSense
