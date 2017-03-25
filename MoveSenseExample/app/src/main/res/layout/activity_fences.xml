@@ -64,11 +64,25 @@
             android:layout_marginTop="8dp"
             android:text="detectFencing" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Step Counter"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/step_sensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+
         <Button
             android:id="@+id/fencing_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Get Current State" />
+
     </LinearLayout>
 </ScrollView>
