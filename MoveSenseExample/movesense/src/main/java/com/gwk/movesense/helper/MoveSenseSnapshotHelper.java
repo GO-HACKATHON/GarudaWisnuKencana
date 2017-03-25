@@ -1,4 +1,4 @@
-package com.gwk.movesenseexample.helper;
+package com.gwk.movesense.helper;
 
 import com.google.android.gms.awareness.state.Weather;
 import com.google.android.gms.location.DetectedActivity;
@@ -7,7 +7,7 @@ import com.google.android.gms.location.DetectedActivity;
  * Created by Michinggun on 3/25/2017.
  */
 
-public class SnapshotHelper {
+public class MoveSenseSnapshotHelper {
 
     public static String getWeatherConditions(int[] conditions) {
         String weatherState = "";
@@ -69,4 +69,5 @@ public class SnapshotHelper {
         }
         return "Unknowns";
     }
+
 }
