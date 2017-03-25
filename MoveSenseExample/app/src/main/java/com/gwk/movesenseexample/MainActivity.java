@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
             public void onWeatherDetected(WeatherResult result) {
                 Weather weather = result.getWeather();
                 Log.i(TAG, "Weather: " + weather);
-                tvWeather.setText("Weather: " + weather.getTemperature(Weather.CELSIUS) + "\n"
-                        + "Temperature feels like: " + weather.getFeelsLikeTemperature(Weather.CELSIUS) + "\n"
+                tvWeather.setText("Weather: " + weather.getTemperature(Weather.CELSIUS) + "'C\n"
+                        + "Temperature feels like: " + weather.getFeelsLikeTemperature(Weather.CELSIUS) + "'C\n"
                         + "Weather conditions: " + MoveSenseSnapshotHelper.getWeatherConditions(weather.getConditions())
                 );
             }

@@ -5,11 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventCallback;
 import android.hardware.SensorManager;
-import android.hardware.TriggerEvent;
-import android.hardware.TriggerEventListener;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +27,7 @@ import com.gwk.movesenseexample.receiver.MyFenceReceiver;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Michinggun on 3/25/2017.
@@ -187,5 +184,10 @@ public class FencesActivity extends AppCompatActivity implements MyFenceReceiver
     @Override
     public void onMoveStateChanged(boolean isDetected, String message) {
         tvMove.setText(String.format(isDetected ? "DETECTED: %s" : "UNDETECTED: %s", message));
+    }
+
+    @OnClick(R.id.fencing_button)
+    void onGetCurrentStateClick() {
+
     }
 }
