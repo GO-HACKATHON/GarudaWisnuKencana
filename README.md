@@ -12,7 +12,7 @@ We create personal assistance in Mobile App that can serve you when you're in ne
 6. Optimizing data transfer
 
 ## Libraries
-1. [MoveSense](https://github.com/Michinggun/MoveSense)  by [@michinggun](https://github.com/Michinggun) : utilize Google Awareness with no hustle
+1. [MoveSense](https://github.com/Michinggun/MoveSense)  by [@michinggun](https://github.com/Michinggun) : utilize Google Awareness with no hassle
 2. [TimeSense](https://github.com/archansel/TimeSense)  by [@archansel](https://github.com/archansel) : makes easy to sense time
 3. [PikoDove](https://github.com/zavyra/PikoDove) by [@zavyra](https://github.com/zavyra) : send data only what you need 
 
