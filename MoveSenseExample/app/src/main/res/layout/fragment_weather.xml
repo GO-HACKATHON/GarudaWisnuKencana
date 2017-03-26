@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
     <ImageView
+        android:id="@+id/weather_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_cloud"/>
@@ -28,5 +29,12 @@
         android:layout_marginTop="4dp"
         android:textSize="16sp"
         android:text="45 'C"/>
+
+    <Button
+        android:id="@+id/weather_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Update"/>
 
 </LinearLayout>

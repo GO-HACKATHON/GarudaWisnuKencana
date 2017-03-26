@@ -98,6 +98,8 @@ public class HomeFragment extends Fragment implements MoveSenseSnapshot.OnActivi
 
     @Override
     public void onActivityDetected(ActivityRecognitionResult result) {
-        tvActivityStatus.setText(String.format("You're currently %s", MoveSenseHelper.getActivityType(result.getMostProbableActivity().getType())));
+        if (getView() != null) {
+            tvActivityStatus.setText(String.format("You're currently %s", MoveSenseHelper.getActivityType(result.getMostProbableActivity().getType())));
+        }
     }
 }
