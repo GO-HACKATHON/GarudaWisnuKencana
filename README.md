@@ -11,6 +11,10 @@ We create personal assistance in Mobile App that can serve you when you're in ne
 5. Share location tracking
 6. Optimizing data transfer
 
+## Libraries
+1. [TimeSense](https://github.com/archansel/TimeSense)  by [@archansel](https://github.com/archansel) : makes easy to sense time
+2. [PikoDove](https://github.com/zavyra/PikoDove) by [@zavyra](https://github.com/zavyra) : send data only what you need 
+
 ## Team
 
 [![Michael Ingga](https://avatars1.githubusercontent.com/u/5793036?v=3&s=140)](https://github.com/Michinggun) | [![Bara Timur](https://avatars3.githubusercontent.com/u/3598958?v=3&s=140)](https://github.com/zavyra) | [![Anselmus KAK](https://avatars0.githubusercontent.com/u/816817?v=3&s=140)](https://github.com/archansel)
