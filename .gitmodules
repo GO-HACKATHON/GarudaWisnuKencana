@@ -4,3 +4,6 @@
 [submodule "PikoDove"]
 	path = PikoDove
 	url = https://github.com/zavyra/PikoDove
+[submodule "MoveSense"]
+	path = MoveSense
+	url = https://github.com/Michinggun/MoveSense
