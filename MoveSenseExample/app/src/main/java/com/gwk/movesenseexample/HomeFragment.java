@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.gwk.movesense.helper.MoveSenseHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -73,6 +75,9 @@ public class HomeFragment extends Fragment implements MoveSenseSnapshot.OnActivi
                         stepCounter = (int) event.values[0] - counterSteps;
                         tvSteps.setText(String.valueOf(stepCounter));
                         moveSenseSnapshot.getDetectedActivity(HomeFragment.this);
+                        if (stepCounter == 15) {
+                            onShowDialog();
+                        }
                         break;
                 }
             }
@@ -101,5 +106,17 @@ public class HomeFragment extends Fragment implements MoveSenseSnapshot.OnActivi
         if (getView() != null) {
             tvActivityStatus.setText(String.format("You're currently %s", MoveSenseHelper.getActivityType(result.getMostProbableActivity().getType())));
         }
+    }
+
+    @OnClick(R.id.home_btn)
+    void onShowDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.custom_alert_dialog, null);
+        dialogBuilder.setView(dialogView);
+//        EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
+//        editText.setText("test label");
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
     }
 }
