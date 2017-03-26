@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you need help?" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/parser_traffic_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="About Traffic"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/parser_schedule_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="About Schedule"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/parser_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="20" />
+
+    <Button
+        android:id="@+id/parser_send_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="Send"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/parser_message_compression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="You save 50% memory size of your send data"
+        android:textSize="16sp" />
+
+</LinearLayout>
